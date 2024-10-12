@@ -17,12 +17,12 @@ class CartsController < ApplicationController
             end
 
             if cart_item.save
-                render json: { message: 'Book added to cart successfully' }, status: :ok
+                render json: { message: "Book added to cart successfully" }, status: :ok
             else
                 render json: { error: cart_item.errors.full_messages }, status: :unprocessable_entity
             end
         else
-            render json: { error: 'Book not found.' }, status: :not_found
+            render json: { error: "Book not found." }, status: :not_found
         end
     end
 
@@ -30,9 +30,9 @@ class CartsController < ApplicationController
         cart_item = current_user.cart_items.find_by(book_id: params[:book_id])
 
         if cart_item&.destroy
-            render json: { message: 'Book removed from cart successfully' }, status: :ok
+            render json: { message: "Book removed from cart successfully" }, status: :ok
         else
-            render json: { error: 'Book not found in cart' }, status: :not_found
+            render json: { error: "Book not found in cart" }, status: :not_found
         end
     end
 end

@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     if @user
       render json: @user
     else
-      render json: { message: 'Failed to find the user.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the user." }, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class UsersController < ApplicationController
         render json: @user.errors, status: :unprocessable_entity
       end
     else
-      render json: { message: 'Failed to find the user.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the user." }, status: :unprocessable_entity
     end
   end
 
@@ -45,12 +45,12 @@ class UsersController < ApplicationController
   def destroy
     if @user
       if @user.update(is_active: false)
-        render json: { message: 'User was successfully deleted.' }, status: :ok
+        render json: { message: "User was successfully deleted." }, status: :ok
       else
-        render json: { message: 'Failed to delete the user.' }, status: :unprocessable_entity
+        render json: { message: "Failed to delete the user." }, status: :unprocessable_entity
       end
     else
-      render json: { message: 'Failed to find the user.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the user." }, status: :unprocessable_entity
     end
   end
 

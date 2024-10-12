@@ -15,7 +15,7 @@ class BooksController < ApplicationController
     if @book
       render json: @book
     else
-      render json: { message: 'Failed to find the book.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the book." }, status: :unprocessable_entity
     end
   end
 
@@ -39,7 +39,7 @@ class BooksController < ApplicationController
         render json: { error: book.errors.full_messages }, status: :unprocessable_entity
       end
     else
-      render json: { message: 'Failed to find the book.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the book." }, status: :unprocessable_entity
     end
   end
 
@@ -47,12 +47,12 @@ class BooksController < ApplicationController
   def destroy
     if @book
       if @book.update(is_active: false)
-        render json: { message: 'Book was successfully deleted.' }, status: :ok
+        render json: { message: "Book was successfully deleted." }, status: :ok
       else
         render json: { error: book.errors.full_messages }, status: :unprocessable_entity
       end
     else
-      render json: { message: 'Failed to find the book.' }, status: :unprocessable_entity
+      render json: { message: "Failed to find the book." }, status: :unprocessable_entity
     end
   end
 
