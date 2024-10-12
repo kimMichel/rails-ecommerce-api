@@ -7,13 +7,15 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  post '/login', to: 'sessions#create'
-  delete '/logout', to: 'sessions#destroy'
+  post "/login", to: "sessions#create"
+  delete "/logout", to: "sessions#destroy"
 
-  resource :cart, only: [:show] do
-    post 'add_to_cart/:book_id', to: 'carts#add_to_cart', as: 'add_to_cart'
-    delete 'remove_from_cart/:book_id', to: 'carts#remove_from_cart', as: 'remove_from_cart'
+  resource :cart, only: [ :show ] do
+    post "add_to_cart/:book_id", to: "carts#add_to_cart", as: "add_to_cart"
+    delete "remove_from_cart/:book_id", to: "carts#remove_from_cart", as: "remove_from_cart"
   end
+
+  resources :orders, only: [ :create, :show, :destroy ]
 
   # Defines the root path route ("/")
   # root "posts#index"
