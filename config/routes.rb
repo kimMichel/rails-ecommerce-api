@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
+  resource :cart, only: [:show] do
+    post 'add_to_cart/:book_id', to: 'carts#add_to_cart', as: 'add_to_cart'
+    delete 'remove_from_cart/:book_id', to: 'carts#remove_from_cart', as: 'remove_from_cart'
+  end
+
   # Defines the root path route ("/")
   # root "posts#index"
 end
