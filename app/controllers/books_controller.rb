@@ -1,5 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[ show update destroy ]
+  before_action :require_login, only: %i[ create update destroy ]
+  before_action :require_admin, only: %i[ create update destroy ]
 
   # GET /books
   def index
@@ -24,7 +26,7 @@ class BooksController < ApplicationController
     if @book.save
       render json: @book, status: :created, location: @book
     else
-      render json: @book.errors, status: :unprocessable_entity
+      render json: { error: book.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
@@ -34,7 +36,7 @@ class BooksController < ApplicationController
       if @book.update(book_params)
         render json: @book
       else
-        render json: @book.errors, status: :unprocessable_entity
+        render json: { error: book.errors.full_messages }, status: :unprocessable_entity
       end
     else
       render json: { message: 'Failed to find the book.' }, status: :unprocessable_entity
@@ -47,7 +49,7 @@ class BooksController < ApplicationController
       if @book.update(is_active: false)
         render json: { message: 'Book was successfully deleted.' }, status: :ok
       else
-        render json: { message: 'Failed to delete the book.' }, status: :unprocessable_entity
+        render json: { error: book.errors.full_messages }, status: :unprocessable_entity
       end
     else
       render json: { message: 'Failed to find the book.' }, status: :unprocessable_entity
