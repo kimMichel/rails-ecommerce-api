@@ -29,7 +29,8 @@ class SessionsController < ApplicationController
            loggedIn: true,
             user: {
                 first_name: user.first_name,
-                last_name: user.last_name
+                last_name: user.last_name,
+                is_admin: user.is_admin
             },
             cart_items: user.cart_items
            }, status: :ok
