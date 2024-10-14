@@ -9,13 +9,14 @@ Rails.application.routes.draw do
 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
+  get "/check_session", to: "sessions#check"
 
   resource :cart, only: [ :show ] do
     post "add_to_cart/:book_id", to: "carts#add_to_cart", as: "add_to_cart"
     delete "remove_from_cart/:book_id", to: "carts#remove_from_cart", as: "remove_from_cart"
   end
 
-  resources :orders, only: [ :create, :show, :destroy ]
+  resources :orders, only: [ :create, :index, :show, :destroy ]
 
   # Defines the root path route ("/")
   # root "posts#index"

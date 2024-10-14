@@ -30,6 +30,12 @@ class OrdersController < ApplicationController
         end
     end
 
+    def index
+        orders = current_user.orders
+
+        render json: orders.to_json()
+    end
+
     def show
         order = current_user.orders.find(params[:id])
 
